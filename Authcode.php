@@ -1,6 +1,6 @@
 <?php
 
-namespace Wilon\Encryption;
+namespace Wilon\Authcode;
 
 class Authcode
 {
