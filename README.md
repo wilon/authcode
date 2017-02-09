@@ -6,7 +6,7 @@ PHP string encrypt and decode function. From discuz.
 Just add this line to your `composer.json` file:
 
 ```json
-"wilon/authcode": "^1.1"
+"wilon/authcode": "^1.1.1"
 ```
 
 or
@@ -19,17 +19,17 @@ composer require wilon/authcode
 
 ```php
 <?php
-    use Wilon\Authcode;
 
-    $key = 'IoUwe#(#FFFsfoaHFfa';
-    echo $auth = Authcode::encode('String', $key), '<br>';
-    echo $result = Authcode::decode($auth, $key), '<br>';
-    echo $result2 = Authcode::decode($auth, 'otherKey'), '<br>';    # Can't get 'String'
+use Wilon\Authcode;
 
-    // Use expiry.
-    echo $auth = Authcode::encode('String', $key, 60), '<br>';
-    sleep(61);
-    echo $result = Authcode::decode($auth, $key), '<br>';    # Can't get 'String'
+$key = 'IoUwe#(#FFFsfoaHFfa';
+echo $auth = Authcode::encode('String', $key), '<br>';
+echo $result = Authcode::decode($auth, $key), '<br>';
+echo $result2 = Authcode::decode($auth, 'otherKey'), '<br>';    # Can't get 'String'
 
+// Use expiry.
+echo $auth = Authcode::encode('String', $key, 60), '<br>';
+sleep(61);
+echo $result = Authcode::decode($auth, $key), '<br>';    # Can't get 'String'
 
 ```
