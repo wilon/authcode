@@ -1,0 +1,29 @@
+{
+    "name": "wilon/authcode",
+    "description": "Ecode and decode string.",
+    "license": "MIT",
+    "homepage": "https://wilon.github.io",
+    "support": {
+        "issues": "https://github.com/wilon/authcode/issues",
+        "source": "https://github.com/wilon/authcode"
+    },
+    "keywords": ["encrypt", "decode"],
+    "authors": [
+        {
+            "name": "Weilong Wang",
+            "email": "wilonx@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Authcode\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
