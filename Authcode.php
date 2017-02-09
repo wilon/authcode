@@ -1,54 +1,33 @@
 <?php
 
-namespace Authcode;
+namespace Wilon\Encryption;
 
 class Authcode
 {
-    /**
-     * The authcode key.
-     *
-     * @var string
-     */
-    protected $key;
-
-    /**
-     * Create a new authcode instance.
-     *
-     * @param  string  $key
-     * @return void
-     *
-     * @throws \RuntimeException
-     */
-    public function __construct($key)
-    {
-        $this->key = $key;
-    }
 
     /**
      * Encode the given value.
      *
      * @param  string  $value
-     * @param  bool  $serialize
+     * @param  string  $key
+     * @param  integer $expiry
      * @return string
-     *
-     * @throws \Illuminate\Contracts\Encryption\EncryptException
      */
-    public function encode($value, $expiry = 0)
+    public static function encode($value, $key, $expiry = 0)
     {
-        $this->authcode($value, 'ENCODE', $this->key, $expiry);
+        return static::authcode($value, 'ENCODE', $key, $expiry);
     }
 
     /**
      * Decode the given value.
      *
-     * @param  string  $value
-     * @param  bool  $serialize
+     * @param  string $value
+     * @param  string $key
      * @return string
-     *
      */
-    public function decode($value, $expiry = 0)
+    public static function decode($value, $key)
     {
-        $this->authcode($value, 'DECODE', $this->key, $expiry);
+        return static::authcode($value, 'DECODE', $key);
     }
 
     /**
@@ -60,12 +39,12 @@ class Authcode
      * @param  integer  $expiry
      * @return string
      */
-    protected function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
+    protected static function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
     {
 
         $ckey_length = 4;
 
-        $key = md5($key ? $key : UC_KEY);
+        $key = md5($key ? $key : AUTHCODE_KEY);
         $keya = md5(substr($key, 0, 16));
         $keyb = md5(substr($key, 16, 16));
         $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length): substr(md5(microtime()), -$ckey_length)) : '';
@@ -111,13 +90,4 @@ class Authcode
         }
     }
 
-    /**
-     * Get the authcode key.
-     *
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
 }
