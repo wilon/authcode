@@ -1,5 +1,5 @@
 {
-    "name": "wilon/authcode",
+    "name": "Encryption/authcode",
     "description": "Ecode and decode string.",
     "license": "MIT",
     "homepage": "https://wilon.github.io",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Wilon\\": ""
+            "Encryption\\": ""
         }
     },
     "config": {

@@ -1,12 +1,12 @@
 # Authcode
-PHP string encrypt and decode function. From discuz.
+PHP string Encryption and Decryption. From discuz source code.
 
 ## Installation & loading
 
 Just add this line to your `composer.json` file:
 
 ```json
-"wilon/authcode": "^1.1.1"
+"wilon/authcode": "^1.1.2"
 ```
 
 or
@@ -20,7 +20,7 @@ composer require wilon/authcode
 ```php
 <?php
 
-use Wilon\Authcode;
+use Encryption\Authcode;
 
 $key = 'IoUwe#(#FFFsfoaHFfa';
 echo $auth = Authcode::encode('String', $key), '<br>';
