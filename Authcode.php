@@ -15,7 +15,22 @@ class Authcode
      */
     public static function encode($value, $key, $expiry = 0)
     {
-        return static::authcode($value, 'ENCODE', $key, $expiry);
+        return static::_authcode($value, 'ENCODE', $key, $expiry);
+    }
+
+    /**
+     * Encode the given value remain equal signs.
+     *
+     *
+     *
+     * @param  string  $value
+     * @param  string  $key
+     * @param  integer $expiry
+     * @return string
+     */
+    public static function encodeRemainEqualsigns($value, $key, $expiry = 0)
+    {
+        return static::_authcode($value, 'ENCODE', $key, $expiry, false);
     }
 
     /**
@@ -27,7 +42,7 @@ class Authcode
      */
     public static function decode($value, $key)
     {
-        return static::authcode($value, 'DECODE', $key);
+        return static::_authcode($value, 'DECODE', $key);
     }
 
     /**
@@ -37,14 +52,15 @@ class Authcode
      * @param  string  $operation
      * @param  string  $key
      * @param  integer  $expiry
+     * @param  boolean  $replaceEqual
      * @return string
      */
-    protected static function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0)
+    protected static function _authcode($string, $operation = 'DECODE', $key = '', $expiry = 0, $replaceEqual = true)
     {
 
         $ckey_length = 4;
 
-        $key = md5($key ? $key : AUTHCODE_KEY);
+        $key = md5($key ? $key : 'AUTHCODE_KEY');
         $keya = md5(substr($key, 0, 16));
         $keyb = md5(substr($key, 16, 16));
         $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0, $ckey_length): substr(md5(microtime()), -$ckey_length)) : '';
@@ -86,7 +102,11 @@ class Authcode
                 return '';
             }
         } else {
-            return $keyc.str_replace('=', '', base64_encode($result));
+            if ($replaceEqual === true) {
+                return $keyc.str_replace('=', '', base64_encode($result));
+            } else {
+                return $keyc.base64_encode($result);
+            }
         }
     }
 
