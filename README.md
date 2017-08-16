@@ -1,4 +1,14 @@
-# Authcode
+# wilon/authcode
+
+[![Packagist][badge_package]][link-packagist]
+[![Packagist Release][badge_release]][link-packagist]
+[![Packagist Downloads][badge_downloads]][link-packagist]
+
+[badge_package]:      https://img.shields.io/badge/package-wilon/authcode-blue.svg?style=flat-square
+[badge_release]:      https://img.shields.io/packagist/v/wilon/authcode.svg?style=flat-square
+[badge_downloads]:    https://img.shields.io/packagist/dt/wilon/authcode.svg?style=flat-square
+[link-packagist]:     https://packagist.org/packages/wilon/authcode
+
 PHP string Encryption and Decryption. From discuz source code.
 
 ## Installation & loading
